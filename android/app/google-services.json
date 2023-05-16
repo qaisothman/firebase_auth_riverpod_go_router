@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "244183698332",
+    "project_id": "auth-example-with-riverpod",
+    "storage_bucket": "auth-example-with-riverpod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244183698332:android:90e32385cc950a1fcdd659",
+        "android_client_info": {
+          "package_name": "com.qaisothman.firebase_auth_riverpod_go_gouter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "244183698332-a48jjdpsr75djdgkiekp7qjtgmqhbjqp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJs1p7kpqGKRXDW38-ZuEiAXO7VtEFrJM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "244183698332-a48jjdpsr75djdgkiekp7qjtgmqhbjqp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
