@@ -1,6 +1,3 @@
-import 'package:firebase_auth_riverpod_go_router/features/main_page/main_page.dart';
-import 'package:firebase_auth_riverpod_go_router/features/page1/page_1.dart';
-import 'package:firebase_auth_riverpod_go_router/features/page2/page2.dart';
 import 'package:firebase_auth_riverpod_go_router/features/register/finish_profile_page.dart';
 import 'package:firebase_auth_riverpod_go_router/features/register/landing/landing_page.dart';
 import 'package:firebase_auth_riverpod_go_router/features/register/login_with_email_page.dart';
@@ -9,21 +6,21 @@ import 'package:firebase_auth_riverpod_go_router/features/register/verify_email_
 import 'package:firebase_auth_riverpod_go_router/features/register/verify_phone_page.dart';
 import 'package:firebase_auth_riverpod_go_router/features/user/user_page.dart';
 import 'package:firebase_auth_riverpod_go_router/features/user/views/account_settings_page.dart';
-import 'package:firebase_auth_riverpod_go_router/product/router/bottom_bar/shell_route.dart';
 import 'package:firebase_auth_riverpod_go_router/product/router/router_notifier/go_router_notifier.dart';
 import 'package:firebase_auth_riverpod_go_router/product/router/routes.dart';
+import 'package:firebase_auth_riverpod_go_router/product/router/shell_route.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+final _rootNavigatorKey = GlobalKey<NavigatorState>();
+
 final goRouterProvider = Provider.autoDispose<GoRouter>(
   (ref) {
     final notifier = ref.watch(goRouterNotifierProvider.notifier);
-    final rootNavigatorKey = GlobalKey<NavigatorState>();
-    final shellNavigatorKey = GlobalKey<NavigatorState>();
 
     return GoRouter(
-      navigatorKey: rootNavigatorKey,
+      navigatorKey: _rootNavigatorKey,
       refreshListenable: notifier,
       initialLocation: Routes.mainPage.key,
       debugLogDiagnostics: true,
@@ -41,7 +38,7 @@ final goRouterProvider = Provider.autoDispose<GoRouter>(
               name: Routes.loginWithEmail.value,
               builder: (context, state) => LoginWithEmailPage(
                 key: state.pageKey,
-                email: state.queryParams['email'] ?? '',
+                email: state.queryParameters['email'] ?? '',
               ),
             ),
             GoRoute(
@@ -86,35 +83,12 @@ final goRouterProvider = Provider.autoDispose<GoRouter>(
           ],
         ),
         BottomTabBarShellRoute(
-          navigatorKey: shellNavigatorKey,
-          routes: [
-            GoRoute(
-              path: Routes.mainPage.key,
-              name: Routes.mainPage.value,
-              builder: (context, state) => MainPage(
-                key: state.pageKey,
-              ),
-            ),
-            GoRoute(
-              path: Routes.page1.key,
-              name: Routes.page1.value,
-              builder: (context, state) => StatisticsPage(
-                key: state.pageKey,
-              ),
-            ),
-            GoRoute(
-              path: Routes.page2.key,
-              name: Routes.page2.value,
-              builder: (context, state) => CashbackPage(
-                key: state.pageKey,
-              ),
-            ),
-          ],
+          parentNavigatorKey: _rootNavigatorKey,
         ),
         GoRoute(
           path: Routes.user.key,
           name: Routes.user.value,
-          parentNavigatorKey: rootNavigatorKey,
+          parentNavigatorKey: _rootNavigatorKey,
           pageBuilder: (context, state) => CustomTransitionPage<void>(
             child: UserPage(key: state.pageKey),
             transitionsBuilder: (context, animation, _, child) {
@@ -139,7 +113,7 @@ final goRouterProvider = Provider.autoDispose<GoRouter>(
             GoRoute(
               path: Routes.accountSettingsPage.key,
               name: Routes.accountSettingsPage.value,
-              parentNavigatorKey: rootNavigatorKey,
+              parentNavigatorKey: _rootNavigatorKey,
               builder: (context, state) => AccountSettingsPage(
                 key: state.pageKey,
               ),

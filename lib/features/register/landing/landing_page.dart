@@ -66,7 +66,7 @@ class LandingPage extends HookConsumerWidget {
                   if (Validators.isValidEmail(credential)) {
                     context.goNamed(
                       Routes.loginWithEmail.value,
-                      queryParams: {
+                      queryParameters: {
                         'email': credential,
                       },
                     );

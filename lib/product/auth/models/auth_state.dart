@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:firebase_auth/firebase_auth.dart' show AuthCredential, User;
+import 'package:firebase_auth/firebase_auth.dart' show User;
 import 'package:firebase_auth_riverpod_go_router/product/auth/models/auth_error.dart';
 import 'package:firebase_auth_riverpod_go_router/product/auth/models/user_model.dart';
 import 'package:flutter/foundation.dart' show immutable;

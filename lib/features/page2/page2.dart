@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CashbackPage extends ConsumerWidget {
-  const CashbackPage({super.key});
+class Page2 extends ConsumerWidget {
+  const Page2({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
